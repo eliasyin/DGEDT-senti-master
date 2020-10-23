@@ -17,7 +17,8 @@ from transformers import BertTokenizer, BertModel
 from transformers.optimization import AdamW, WarmupLinearSchedule
 from optimization import BertAdam
 #tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-bert_model= BertModel.from_pretrained('bert-base-uncased')
+bert_model = BertModel.from_pretrained(
+    '/home/ycf19/tools/pretrained_models/bert/bert-base-uncased/')
 class Instructor:
     def __init__(self, opt):
         self.opt = opt

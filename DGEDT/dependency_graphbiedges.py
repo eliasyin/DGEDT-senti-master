@@ -8,7 +8,8 @@ import tqdm
 import re
 from stanfordcorenlp import StanfordCoreNLP
 import json
-nlps = StanfordCoreNLP(r'./stanford-corenlp-full-2018-02-27')
+nlps = StanfordCoreNLP(
+    r'/home/ycf19/tools/pretrained_models/stanford-corenlp-full-2018-02-27')
 #text = 'Guangdong University of Foreign  Studies is located in Guangzhou. Guangdong University of Foreign Studies'
 #print ('Tokenize:', nlp.word_tokenize(text))
 def tokenizeanddep(text):

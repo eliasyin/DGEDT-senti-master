@@ -12,7 +12,7 @@ class BucketIterator(object):
         self.sort_key = sort_key
         self.batch_size=batch_size
         self.data=[item for item in data if len(item['text_indices'])<100 ]
-        if other is not None:
+        if other is not None:  # other参数是干啥的？
             self.other=[item for item in other if len(item['text_indices'])<100 ]
             random.shuffle(self.other)
             self.batches = self.sort_and_pad(data, batch_size, self.other)
@@ -49,6 +49,9 @@ class BucketIterator(object):
         return batches
 
     def pad_data(self, batch_data, other_data=None):
+        '''
+        接收一个batch的data并pad
+        '''
         batch_text_indices = []
         batch_context_indices = []
         batch_aspect_indices = []

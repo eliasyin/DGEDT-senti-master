@@ -358,12 +358,14 @@ class ASBIGCN(nn.Module):
         self.opt = opt
 #        self.mul1=mutualatt(2*opt.hidden_dim)
 #        self.mul2=mutualatt(2*opt.hidden_dim)
+        # Creates Embedding instance from given 2-dimensional FloatTensor.
         self.embed = nn.Embedding.from_pretrained(torch.tensor(embedding_matrix, dtype=torch.float))
+        # 一种可以保持序列长度的LSTM，类似于TF中的RNN
         self.text_lstm = DynamicLSTM(768, opt.hidden_dim, num_layers=1, batch_first=True, bidirectional=True)
 #        self.text_lstm1 = DynamicLSTM(2*opt.hidden_dim, opt.hidden_dim, num_layers=1, batch_first=True, bidirectional=True)
 #        self.text_lstm2 = DynamicLSTM(opt.embed_dim, 384, num_layers=1, batch_first=True, bidirectional=True)
 #        self.gc1 = GraphConvolution(2*opt.hidden_dim, 2*opt.hidden_dim)
-#        self.gc2 = GraphConvolution(2*opt.hidden_dim, 2*opt.hidden_dim)
+#        self.gc2 = GraphConvolution(2*opt.hidden_dim, 2*opt.hidden_dim) 
         self.gc= simpleGraphConvolutionalignment(2*opt.hidden_dim, 2*opt.hidden_dim, opt.edge_size, bias=True)
         self.fc = nn.Linear(8*opt.hidden_dim, opt.polarities_dim)
 #        self.fc1 = nn.Linear(768*2,768)
