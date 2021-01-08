@@ -73,12 +73,15 @@ class Tokenizer(object):
                 self.idx += 1
 
     def text_to_sequence(self, text, tran=False):
+        r'''文本分词并向量化
+        这里分词的采用的是standFordNLP，向量化采用的是BERT模型
+        '''
         text = text.lower().strip()
         words = tokenize(text)
         trans=[]
         realwords=[]
         for word in words:
-            wordpieces=self.tokenizer._tokenize(word)
+            wordpieces=self.tokenizer._tokenize(word)  # 对standsfordNLP分词结果使用BERT模型分词
             tmplen=len(realwords)
             
             realwords.extend(wordpieces)
@@ -103,6 +106,13 @@ class ABSADataset(object):
 
 
 def span(texts,aspect):
+    r'''计算原句tokenize之后aspect的索引范围
+    
+    param:
+    ---------
+        texts : 将一句话从aspect的位置切开后的句子段列表
+        aspect : 句子中的属性
+    '''
     startid=0
     aslen=len(tokenize(aspect))
     spans=[]
